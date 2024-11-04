@@ -12,7 +12,7 @@ import (
 
 const apiUrl = "https://api.github.com/users/%s/events"
 
-func FetchUserActivity(user string) []datatypes.UserActivity {
+func FetchUserActivity(user string) {
 	res, err := http.Get(fmt.Sprintf(apiUrl, user))
 
 	if err != nil {
@@ -33,11 +33,14 @@ func FetchUserActivity(user string) []datatypes.UserActivity {
 			log.Fatal(err)
 		}
 
-		return userActivity
+		for _, activity := range userActivity{
+			
+			fmt.Printf("\n%v --> %v\n", activity.Type, activity.Repo.Name)
+		}
+
+		
 
 	}else{
 		log.Fatal("Could not fetch data")
 	}
-
-	return []datatypes.UserActivity{}
 }
