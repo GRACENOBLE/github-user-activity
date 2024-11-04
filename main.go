@@ -1,7 +1,12 @@
 package main
 
-import "github.com/noble/github-user-activity/api"
+import (
+	"fmt"
+
+	"github.com/noble/github-user-activity/api"
+)
 
 func main() {
-	api.FetchUserActivity("GRACENOBLE")
+	data := api.FetchUserActivity("GRACENOBLE")
+	fmt.Println(data)
 }

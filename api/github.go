@@ -1,15 +1,18 @@
 package api
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"log"
 	"net/http"
+
+	"github.com/noble/github-user-activity/datatypes"
 )
 
 const apiUrl = "https://api.github.com/users/%s/events"
 
-func FetchUserActivity(user string) {
+func FetchUserActivity(user string) []datatypes.UserActivity {
 	res, err := http.Get(fmt.Sprintf(apiUrl, user))
 
 	if err != nil {
@@ -23,11 +26,18 @@ func FetchUserActivity(user string) {
 			log.Fatal(err)
 		}
 
-		json := string(bodyBytes)
+		var userActivity []datatypes.UserActivity
 
-		fmt.Printf("%v", json)
+		err = json.Unmarshal(bodyBytes, &userActivity)
+		if err != nil{
+			log.Fatal(err)
+		}
+
+		return userActivity
 
 	}else{
 		log.Fatal("Could not fetch data")
 	}
+
+	return []datatypes.UserActivity{}
 }
