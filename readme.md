@@ -7,7 +7,7 @@ Clone the repository and run the following command:
 git clone https://github.com/GRACENOBLE/github-user-activity.git
 cd TaskTracker
 ```
-Build the binary executable
+Build the binary executable (Make sure to have go installed)
 ```
 go build .
 ```
