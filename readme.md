@@ -7,7 +7,11 @@ Clone the repository and run the following command:
 git clone https://github.com/GRACENOBLE/github-user-activity.git
 cd TaskTracker
 ```
-get a user's github activity
+Build the binary executable
+```
+go build .
+```
+Get a user's github activity
 ```
   github-user-activity <username>
 ```
